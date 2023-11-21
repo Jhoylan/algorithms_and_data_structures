@@ -70,9 +70,9 @@ void add(int k, LINKED_LIST *l) {
 }
 
 void delete(LINKED_LIST *l){
-        NODE *tmp, *tmp2;
+        NODE *tmp;
 
-        tmp1 = l->first;
+        tmp = l->first;
 
         if(l->first == NULL){
                 return;
@@ -81,14 +81,16 @@ void delete(LINKED_LIST *l){
         if(l->first->next == NULL){
                 l->first = NULL;
                 l->last  = NULL;
-                free(tmp1);
+                free(tmp);
                 
                 return;
         }
 
-        while(tmp1->next != NULL){
-                if(tmp1->next->next == NULL){
-                        
+        while(tmp->next != NULL){
+                if(tmp->next->next == NULL){
+                        free(tmp->next);
+
+                        tmp->next = NULL;
                         
                         break;
                 }
@@ -102,27 +104,16 @@ int main(){
 
 	pl = malloc(sizeof(LINKED_LIST));
 
+	add(2, pl);
 	add(3, pl);
 	add(5, pl);
 	add(7, pl);
 	
         show(pl);
 	
-        shift(2, pl);
-	
-        show(pl);
-	
-        insert_at(2, 8, pl);
-
-	show(pl);
-
-        printf("Size: %d\n", size(pl));
-
-        delete(5, pl);
+        delete(pl);
 
         show(pl);
-
-        printf("Size: %d\n", size(pl));
 
 	return 0;
 }
