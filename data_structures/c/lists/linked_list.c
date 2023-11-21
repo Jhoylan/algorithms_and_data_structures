@@ -154,32 +154,40 @@ void delete(int k, LINKED_LIST *l){
         }
 }
 
+void insert_after(LINKED_LIST *l, int j, int k){
+	NODE *tmp, *n;
+
+	tmp = l->first;
+
+	while(tmp != NULL){
+                if(tmp->key == j){
+                        n = initialize_node(k);
+
+                        n->next   = tmp->next;    
+                        tmp->next = n;
+                        
+                        break;
+                }
+
+		tmp = tmp->next;
+	}
+}
+
 int main(){
 	LINKED_LIST *pl;
 
 	pl = malloc(sizeof(LINKED_LIST));
 
+	add(2, pl);
 	add(3, pl);
 	add(5, pl);
 	add(7, pl);
 	
         show(pl);
 	
-        shift(2, pl);
-	
-        show(pl);
-	
-        insert_at(2, 8, pl);
-
-	show(pl);
-
-        printf("Size: %d\n", size(pl));
-
-        delete(5, pl);
+        insert_after(pl, 3, 4);
 
         show(pl);
-
-        printf("Size: %d\n", size(pl));
-
-	return 0;
+        
+        return 0;
 }
