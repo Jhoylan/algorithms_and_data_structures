@@ -14,7 +14,7 @@ typedef struct linked_list {
 
 NODE * initialize_node(int k){
 	NODE *p;
-	
+
 	p      = malloc(sizeof(NODE));
 	p->key = k;
 
@@ -55,6 +55,10 @@ void push(int k, LINKED_LIST *l) {
 	NODE *p;
 	
 	p = initialize_node(k);
+
+        if(p == NULL){
+                return;
+        }
 	
 	if(l->last == NULL){
 		l->first = p;
