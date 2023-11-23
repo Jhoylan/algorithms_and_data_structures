@@ -51,25 +51,21 @@ int size(LINKED_LIST *l){
         return n;
 }
 
-void add(int k, LINKED_LIST *l) {
+void push(int k, LINKED_LIST *l) {
 	NODE *p;
 	
-	p      = malloc(sizeof(NODE));
-	p->key = k;
+	p = initialize_node(k);
 	
-	if(l->first == NULL){
+	if(l->last == NULL){
 		l->first = p;
-	}
-
-	if(l->last != NULL){
-		l->last->next = p;
-		l->last	      = p;
+		l->last  = p;
 	} else {
-		l->last = p;
-	}
+                l->last->next = p;
+                l->last       = p;
+        }
 }
 
-void delete(LINKED_LIST *l){
+void pop(LINKED_LIST *l){
         NODE *tmp1;
 
         tmp1 = l->first;
@@ -84,14 +80,14 @@ int main(){
 
 	pl = malloc(sizeof(LINKED_LIST));
 
-	add(2, pl);
-	add(3, pl);
-	add(5, pl);
-	add(7, pl);
+	push(2, pl);
+	push(3, pl);
+	push(5, pl);
+	push(7, pl);
 	
         show(pl);
 	
-        delete(pl);
+        pop(pl);
 
         show(pl);
 	
