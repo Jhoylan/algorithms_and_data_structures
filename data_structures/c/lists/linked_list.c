@@ -21,6 +21,17 @@ NODE * initialize_node(int k){
         return p;
 }
 
+LINKED_LIST * initialize_list(){
+        LINKED_LIST *l;
+
+        l = malloc(sizeof(LINKED_LIST));
+
+        l->first = NULL;
+        l->last  = NULL;
+
+        return l;
+}
+
 void show(LINKED_LIST *l){
 	NODE *tmp;
 
@@ -52,10 +63,7 @@ int size(LINKED_LIST *l){
 }
 
 void add(int k, LINKED_LIST *l) {
-	NODE *p;
-	
-	p      = malloc(sizeof(NODE));
-	p->key = k;
+	NODE *p = initialize_node(k);
 	
 	if(l->first == NULL){
 		l->first = p;
@@ -174,9 +182,7 @@ void insert_after(LINKED_LIST *l, int j, int k){
 }
 
 int main(){
-	LINKED_LIST *pl;
-
-	pl = malloc(sizeof(LINKED_LIST));
+	LINKED_LIST *pl = initialize_list();
 
 	add(2, pl);
 	add(3, pl);

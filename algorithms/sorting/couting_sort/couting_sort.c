@@ -15,6 +15,8 @@ int register_array(int arr[5]){
                 count++;
         }
 
+        printf("\n");
+
         return max;
 }
 
@@ -28,10 +30,34 @@ void show(int arr[5]){
 
 void sort(int arr[5], int max){
         int count[max + 1];
-        
-        for(int i = 0; i < 5; i++){
-                count[arr[]]
+
+        int sorted_arr[5];
+
+        int key;
+
+        for(int m = 0; m < max + 1; m++){
+                if(m < 5){
+                        sorted_arr[m] = 0;
+                }
+
+                count[m] = 0;
         }
+
+        for(int i = 0; i < 5; i++){
+                count[arr[i]] = count[arr[i]] + 1; 
+        }
+       
+        for(int j = 1; j < max + 1; j++){
+                count[j] = count[j] + count[j - 1];
+        }
+
+        for(int k = 4; k >= 0; k--){
+                count[arr[k]] = count[arr[k]] - 1;
+                
+                sorted_arr[count[arr[k]]] = arr[k];
+        }
+        
+        show(sorted_arr);    
 }
 
 int main(){
@@ -42,6 +68,8 @@ int main(){
         printf("The original array is: \n");
 
         show(arr);
+
+        printf("The sorted array is: \n");
 
         sort(arr, max);
 
